@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>ru.job4j</groupId>
-  <artifactId>Job4j Forum</artifactId>
+  <artifactId>job4j_forum</artifactId>
   <version>1</version>
   <packaging>jar</packaging>
 
@@ -53,6 +53,10 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
@@ -81,6 +85,19 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-maven-plugin</artifactId>
+        <version>3.6.2</version>
+        <configuration>
+          <changeLogFile>${basedir}/db/master.xml</changeLogFile>
+          <url>jdbc:postgresql://127.0.0.1:5432/forum</url>
+          <driver>org.postgresql.Driver</driver>
+          <username>postgres</username>
+          <password>password</password>
+          <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+        </configuration>
       </plugin>
     </plugins>
   </build>
