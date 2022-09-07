@@ -2,7 +2,10 @@ package ru.job4j.forum.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -12,6 +15,12 @@ public class Post {
     private String name;
     private String description;
     private LocalDateTime created = LocalDateTime.now();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User author;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private Set<Message> messages = new HashSet<>();
 
     public static Post of(String name, String description, int id) {
         Post post = new Post();
@@ -51,6 +60,14 @@ public class Post {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     @Override

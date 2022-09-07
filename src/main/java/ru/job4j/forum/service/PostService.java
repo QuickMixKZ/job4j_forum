@@ -3,7 +3,6 @@ package ru.job4j.forum.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.repository.PostRepository;
-import ru.job4j.forum.repository.PostStoreMem;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,5 +30,9 @@ public class PostService {
 
     public void update(Post post) {
         postStore.save(post);
+    }
+
+    public void delete(Post post) {
+        postStore.delete(post);
     }
 }
