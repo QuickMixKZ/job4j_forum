@@ -8,6 +8,5 @@ public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class);
         System.out.println("http://localhost:8080/index");
-        //System.out.println(new BCryptPasswordEncoder().encode("123456"));
     }
 }
